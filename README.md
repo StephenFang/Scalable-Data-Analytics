@@ -332,9 +332,6 @@ is a good heuristic for an optimal value. Using this heuristic, what is a reason
 Try values of _k_ from 2 to 30 in increments of 2.  To speed up these experiments set the convergence 
 `epsilon` threshold for `k_means` to 0.001.
 
-After determining this value, we can finally visualize campaign contributions
-to different candidates as geographical clusters. Congratulations on finishing
-the last project in this course!
 
 
 
