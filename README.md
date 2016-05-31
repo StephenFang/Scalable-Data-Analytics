@@ -334,4 +334,4 @@ Try values of _k_ from 2 to 30 in increments of 2.  To speed up these experiment
 
 
 
-
+![alt tag] https://github.com/StephenFang/Scalable-Data-Analytics/blob/master/map.png
