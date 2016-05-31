@@ -20,12 +20,12 @@ scalable fashion.
 
 While Spark evidently provides support for basic queries, the true power of its
 programming model is in its flexibility supporting more complicated, iterative
-tasks. As a result, you'll additionally use Spark operators to implement K-means
+tasks. As a result, we'll additionally use Spark operators to implement K-means
 clustering, a widely-used algorithm in machine learning for categorizing and
 classifying data.
 
 Finally, we will combine algorithm and data to perform some scalable machine
-learning. Hopefully, you'll be able to see some trends in campaign
+learning. Hopefully, we'll be able to see some trends in campaign
 contributions.
 
 # Context
@@ -70,17 +70,17 @@ links between committees
 
 Read the specification at the
 [FEC site](http://www.fec.gov/finance/disclosure/ftpdet.shtml#a2015_2016)
-to further familiarize yourself with the details of these formats.
+to further familiarize werself with the details of these formats.
 
 ## The System: Spark SQL (DataFrames)
 
-You'll be using [Spark SQL](http://spark.apache.org/docs/latest/sql-programming-guide.html#overview)
+we'll be using [Spark SQL](http://spark.apache.org/docs/latest/sql-programming-guide.html#overview)
 to process the FEC data. Essentially, Spark SQL is an extension to Spark which
 supports and exploits database abstractions to allow applications to manipulate
 data both in the context of SQL and in the context of Spark operators.
 
 Spark DataFrames are a specialization of the RDD which additionally organize RDD
-records into columns. In fact you can always access the underlying RDD for a
+records into columns. In fact we can always access the underlying RDD for a
 given dataframe using `dataframe.rdd`.  Each DataFrame represents a SQL table,
 which support as methods logical SQL operators composable with other Spark and
 user-defined functions.
@@ -130,7 +130,7 @@ sql.sql("SELECT x FROM points WHERE x > 0 AND y < 0 AND rand() > 0.2")\
     .registerTempTable("samples")
 ```
 
-Play around with DataFrames to get a sense of how they work. You can read the
+Play around with DataFrames to get a sense of how they work. we can read the
 [official documentation](http://spark.apache.org/docs/latest/sql-programming-guide.html#overview) for more details.
 
 ## The Algorithm: K-means Clustering
@@ -213,16 +213,12 @@ reference.
 
 # Specification
 
-Time to put your database skills to use!
+Time to put wer database skills to use!
 
-**Note: We will not grade code that is modified outside of the cells bracketed
-by _Begin Student Code Here_ and _End Student Code Here_ markers. Make sure all
-the changes you want to submit lie between those markers. DO NOT REMOVE THE
-_Begin Student Code Here_ AND _End Student Code Here_ CELLS.**
 
 ## 1. DataFrames
 
-Your first task is to carry out basic data analytics queries against the FEC
+First we try to carry out basic data analytics queries against the FEC
 data.
 
 ### 1a. File Format Wrangling
@@ -241,7 +237,7 @@ a table and returns a list of column names. Use these to properly [specify the s
 Now that our files have been loaded into Spark, we can use DataFrames to perform
 some basic analytical queries - similar to what we can do with SQL. Observe that
 we can either write raw SQL queries, or we can use DataFrame methods to directly
-apply SQL operators. For this question, you may use either approach.
+apply SQL operators. For this question, we may use either approach.
 
 Answer the following questions by writing queries:
  1. What are the ID numbers and Principal Candidate Committee numbers of the 4 current
@@ -250,7 +246,7 @@ Answer the following questions by writing queries:
     Hint: Take a look at the output of the demonstration. What values do we want
     these columns to have?
  2. How many contributions by individuals has each front-runner's principal campaign committee received? 
-    Hint: Which table might you want to join on? Do _not_ filter by ENTITY_TP.
+    Hint: Which table might we want to join on? Do _not_ filter by ENTITY_TP.
  3. How much in total has each front-runner's principal campaign committee received from the contributions in Q2?
  4. What are the committees that are linked to each of the front-runners?
     Hint: How many tables will we need for this?
@@ -259,7 +255,7 @@ Answer the following questions by writing queries:
  6. How much in total has each front-runner received from the contributions in Q5?
 
 **Note: The penultimate line of each cell describes the schema for the output
-we're expecting. If you change this line, make sure that your output's schema
+we're expecting. If we change this line, make sure that wer output's schema
 matches these column names.**
 
 ## 2. K-means Clustering
@@ -268,23 +264,23 @@ Time to do more advanced analysis. Implement the K-means algorithm on
 DataFrames.
 
 We'll start with some toy data first before we return to the more complex
-campaign data. The toy data is just a collection of 2D points; you can play
+campaign data. The toy data is just a collection of 2D points; we can play
 around with it to experiment. (This data is stored in the form of a
-[`Parquet`](https://parquet.apache.org/) file for efficiency; you don't need to
+[`Parquet`](https://parquet.apache.org/) file for efficiency; we don't need to
 worry about the specifics of it except that they appear as directories in the
-file system and you can load them with `sql.read.parquet`.)
+file system and we can load them with `sql.read.parquet`.)
 
 Hint: NumPy will come in handy here for computing things like distances, or for
 generating pseudo-random numbers.
 
 **Note: Remember, we are using DataFrames to ensure that our algorithm scales
 with the size of data input. Do not attempt to read large amounts of data
-into memory (e.g. into Python lists)! Failure to do so may cause your code to
-run _very_ slowly, and you may lose points as a result.**
+into memory (e.g. into Python lists)! Failure to do so may cause wer code to
+run _very_ slowly, and we may lose points as a result.**
 
 ### 2a. K-means++ Initialization
 
-First, you will initialize the centers using the
+First, we will initialize the centers using the
 [K-Means++
 algorithm](https://en.wikipedia.org/wiki/K-means%2B%2B#Improved_initialization_algorithm).
 Since we want to sample for centers in a scalable fasion, we will use
@@ -294,10 +290,10 @@ to randomly select a center.
 
 Implement `initialize_centers_plus`.
 We've provided the signatures of some functions which will most likely be
-helpful to you. `choose_partition_center`, `pick_between_centers`, and
-`nearest_center` may be useful helper functions in your solution to
+helpful to we. `choose_partition_center`, `pick_between_centers`, and
+`nearest_center` may be useful helper functions in wer solution to
 `initialize_centers_plus`.
-When you've finished implementing this function, you can run it against our set
+When we've finished implementing this function, we can run it against our set
 of toy data. In particular, the initial centers which are selected by K-means++
 should be far away from each other.
 
@@ -307,12 +303,12 @@ Now, using our intialization code from before, we will implement the main loop
 in K-means clustering (and the rest of the function, too).
 
 Provide an implementation of `k_means`.
-We've given you `has_converged`, a useful function to determine when
+We've given we `has_converged`, a useful function to determine when
 the main loop of the K-means algorithm has finished converging.
-In addition, you may find that filling out `compute_new_center_statistics` and
-`add_statistics` will help you complete your task.
+In addition, we may find that filling out `compute_new_center_statistics` and
+`add_statistics` will help we complete wer task.
 
-You can test your implementation of the completed K-means algorithm against the
+we can test wer implementation of the completed K-means algorithm against the
 toy data. On convergence, the algorithm should produce K clusters which
 accurately represent the partitioning of the data into K partitions.
 
@@ -322,8 +318,8 @@ Finally, we can try out our K-means algorithm on our original set of campaign
 finance data: we'll attempt to categorize campaign contributions by geographic
 location using clusters.
 
-You've just implemented the K-means algorithm, and we've already implemented
-code to load the zip code data into DataFrames, so all you have to do is find
+we've just implemented the K-means algorithm, and we've already implemented
+code to load the zip code data into DataFrames, so all we have to do is find
 the right value of _k_ to use. Essentially, we want a value of _k_ which
 minimizes the error from the resulting clusters; at the same time, a larger
 value of _k_ carries with it the risk of overfitting. We define the error of the
@@ -336,7 +332,7 @@ is a good heuristic for an optimal value. Using this heuristic, what is a reason
 Try values of _k_ from 2 to 30 in increments of 2.  To speed up these experiments set the convergence 
 `epsilon` threshold for `k_means` to 0.001.
 
-After determining this value, you can finally visualize campaign contributions
+After determining this value, we can finally visualize campaign contributions
 to different candidates as geographical clusters. Congratulations on finishing
 the last project in this course!
 
@@ -345,12 +341,12 @@ the last project in this course!
 
 # Testing
 
-We've provided some toy data in the notebook to test your implementation of the
-K-means algorithm. Of course, you are advised to write your own tests to catch
-bugs in your implementation.
+We've provided some toy data in the notebook to test wer implementation of the
+K-means algorithm. Of course, we are advised to write wer own tests to catch
+bugs in wer implementation.
 
 # Submission
-Before you submit, remember to pull from `course` to make sure you have the most
+Before we submit, remember to pull from `course` to make sure we have the most
 recent version of the homework code.
 To submit, remember to push to `release/hw5`:
 
@@ -358,7 +354,7 @@ To submit, remember to push to `release/hw5`:
 
 Detailed submission instructions are in [HW0](https://github.com/berkeley-cs186/course/tree/master/hw0).
 
-We hope you all learned a lot from these projects!
+We hope we all learned a lot from these projects!
 
  -- CS 186 Staff
 # Scalable-Data-Analytics-and-Machine-Learning
