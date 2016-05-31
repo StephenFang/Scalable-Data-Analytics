@@ -336,25 +336,5 @@ After determining this value, we can finally visualize campaign contributions
 to different candidates as geographical clusters. Congratulations on finishing
 the last project in this course!
 
-**Note: Part 3 should not take more than 20 minutes to run in total on the hive machines.**
 
 
-# Testing
-
-We've provided some toy data in the notebook to test wer implementation of the
-K-means algorithm. Of course, we are advised to write wer own tests to catch
-bugs in wer implementation.
-
-# Submission
-Before we submit, remember to pull from `course` to make sure we have the most
-recent version of the homework code.
-To submit, remember to push to `release/hw5`:
-
-    $ git push origin master:release/hw5
-
-Detailed submission instructions are in [HW0](https://github.com/berkeley-cs186/course/tree/master/hw0).
-
-We hope we all learned a lot from these projects!
-
- -- CS 186 Staff
-# Scalable-Data-Analytics-and-Machine-Learning
